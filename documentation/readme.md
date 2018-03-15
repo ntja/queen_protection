@@ -1,6 +1,6 @@
 # Steps to start application and trigger requests
 
-- Copy the folder **queen_protection** and place it on the root of the web server
+- Clone/download the project and place it on the root of the web server
 
 - Start your web server
 
@@ -11,4 +11,4 @@
 
 The API-doc, Postman-collection file, Data model and description documentation are located in the **/documentation** folder.
 
-The bash file to run unit test cases is locate on root directory and named **run-test-cases.sh** for linux environnement and **run-test-cases.bat** for Windows environnement
+The bash file to run unit test cases is locate on root directory and named **run-test-cases.sh** for linux environnement and **run-test-cases.bat** for Windows environnement. Testing classes are location in **/tests/Feature** folder
