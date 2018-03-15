@@ -8,3 +8,7 @@
 
 
 ## Documentation and Unit test cases
+
+The API-doc, Postman-collection file, Data model and description documentation are located in the **/documentation** folder.
+
+The bash file to run unit test cases is locate on root directory and named **run-test-cases.sh** for linux environnement and **run-test-cases.bat** for Windows environnement
