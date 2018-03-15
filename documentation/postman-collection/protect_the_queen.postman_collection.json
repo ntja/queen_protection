@@ -1,0 +1,212 @@
+{
+	"variables": [],
+	"info": {
+		"name": "protect_the_queen",
+		"_postman_id": "b98a47a3-9d13-408f-7636-7648c2fbd5ef",
+		"description": "Protecting the move of the Queen inside the Kingdom\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost/queen_protection/api/create-kingdom",
+			"request": {
+				"url": "localhost/queen_protection/api/kingdom",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"width\": \"10\",\n\t\"length\": \"9\"\n}"
+				},
+				"description": "Create a new Kingdom"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost/queen_protection/api/create-kingdom",
+			"request": {
+				"url": "localhost/queen_protection/api/kingdom",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"width\": \"6\",\n\t\"length\": \"9\"\n}"
+				},
+				"description": "Create a new Kingdom\n"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost/queen_protection/api/create-queen",
+			"request": {
+				"url": "localhost/queen_protection/api/queen",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"x\": \"1\",\n\t\"y\": \"2\",\n\t\"face\":\"EAST\"\n}"
+				},
+				"description": "Create a Queen"
+			},
+			"response": []
+		}
+		,
+		{
+			"name": "localhost/queen_protection/api/add-queen",
+			"request": {
+				"url": "localhost/queen_protection/api/queen/add",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"x\": \"1\",\n\t\"y\": \"2\",\n\t\"face\":\"EAST\"\n}"
+				},
+				"description": "Add the Queen in the Kingdom"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost/queen_protection/api/output",
+			"request": {
+				"url": "localhost/queen_protection/api/output",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"x\": \"8\",\n\t\"y\": \"4\",\n\t\"face\":\"SOUTH\"\n}"
+				},
+				"description": "Print out the output"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost/queen_protection/api/move-queen",
+			"request": {
+				"url": "localhost/queen_protection/api/queen/move",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Move the queen one unit on her current direction"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost/queen_protection/api/place-queen",
+			"request": {
+				"url": "localhost/queen_protection/api/queen/place",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"x\": \"0\",\n\t\"y\": \"0\",\n\t\"face\":\"NORTH\"\n}"
+				},
+				"description": "Place the Queen in the kingdom"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost/queen_protection/api/rotate-queen",
+			"request": {
+				"url": "localhost/queen_protection/api/queen/rotate",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"direction\":\"LEFT\"\n}"
+				},
+				"description": "Rotate the Queen in the given 90degrees direction"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost/queen_protection/api/place-queen",
+			"request": {
+				"url": "localhost/queen_protection/api/queen/add",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"x\": \"1\",\n\t\"y\": \"2\",\n\t\"face\":\"EAST\"\n}"
+				},
+				"description": "Place the Queen in the Kingdom"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost/queen_protection/api/output",
+			"request": {
+				"url": "localhost/queen_protection/api/output",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"x\": \"8\",\n\t\"y\": \"4\",\n\t\"face\":\"SOUTH\"\n}"
+				},
+				"description": "Print out the output"
+			},
+			"response": []
+		}
+	]
+}

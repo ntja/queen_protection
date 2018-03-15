@@ -1,0 +1,313 @@
+#%RAML 1.0
+title: Queen Protection RESTFul
+version: v1
+baseUri: http://localhost/queen_protection
+mediaType: application/json
+protocols: [HTTP,HTTPS]
+description: Protecting the Queen
+securitySchemes:
+    jwt:
+      type: x-access-token
+      description: Authorization based on signed token
+      displayName: JWT
+types:
+  Point:
+    type: object
+    properties:
+      x:
+        type: integer
+        description: Abscissa coordinate
+        required: true
+        example: 1
+      y:
+        type: integer
+        description: Ordinate coordnate
+        required: true
+        example: 2
+  Person:
+    type: object
+    properties:
+      position:
+        type: Point
+        description: Position of the person in the Kingdom
+        required: true
+        example: {x : 1, y : 2}
+      face:
+        enum:
+          [WEST, NORTH, EAST, SOUTH]
+        description: Direction where a Person is looking on
+        required: true
+        example: NORTH
+  Kingdom:
+    type: object
+    properties:
+      queen:
+        type: Person
+        description: The Queen of kingdom
+        required: true
+        example: { position: {x : 1, y : 2}, face : NORTH }
+  responseFormat:
+    "type": "object"
+    "properties": {
+      "code": {
+        "type": "string",
+        "required": true,
+        "description": "Unique identifier code"
+      },
+      "message": {
+        "type": "string",
+        "required": true,
+        "description": "Explanatory error description message."
+      }
+    }
+  response200: responseFormat
+  response201: responseFormat
+  response400: responseFormat
+  response422: responseFormat
+  response404: responseFormat
+  response500: responseFormat
+/kingdom:
+  post:
+    description: Create a new kingdom.
+    securedBy: [jwt]
+    body:
+      application/json:
+        type: Kingdom
+    responses:
+      201:
+        description: The request has been fullfilled and a new Kingdom is created
+        body:
+          application/json:
+            type: response201
+            example: |
+              {
+                "code": "201",
+                "message": "New Kingdom successfully created"
+              }
+      400:
+        description: The request completion failed.
+        body:
+          application/json:
+            type: response400
+            example: |
+              {
+                "code": "400",
+                "message": "Invalid request body"
+              }
+      422:
+        description: The request completion failed.
+        body:
+          application/json:
+            type: response422
+            example: |
+              {
+                "code": "422",
+                "message": "Unprocessable Entity"
+              }
+      500:
+        description: The Server crashed.
+        body:
+          application/json:
+            type: response500
+            example: |
+              {
+                "code": "500",
+                "message": "An internal error occurred"
+              }
+/queen:
+  post:
+    description: Create a new Queen
+    securedBy: [jwt]
+    body:
+      application/json:
+        type: Person
+    responses:
+      201:
+        description: The request has been fullfilled and a new Queen is created
+        body:
+          application/json:
+            type: response201
+            example: |
+              {
+                "code": "201",
+                "message": "New Queen successfully created"
+              }
+      400:
+        description: The request completion failed.
+        body:
+          application/json:
+            type: response400
+            example: |
+              {
+                "code": "400",
+                "message": "Invalid request body"
+              }
+      422:
+        description: The request completion failed.
+        body:
+          application/json:
+            type: response422
+            example: |
+              {
+                "code": "422",
+                "message": "Unprocessable Entity"
+              }
+      500:
+        description: The Server crashed.
+        body:
+          application/json:
+            type: response500
+            example: |
+              {
+                "code": "500",
+                "message": "An internal error occurred"
+              }
+  /move:
+    post:
+      description: Move the Queen one unit in the direction she is facing
+      responses:
+        200:
+          description: The request has been fullfilled and a the position of the Queen changed
+          body:
+            application/json:
+              type: response200
+              example: |
+                {
+                  "code": "200",
+                  "message": "Queen successfully moved"
+                }
+        400:
+          description: The request completion failed.
+          body:
+            application/json:
+              type: response400
+              example: |
+                {
+                  "code": "400",
+                  "message": "Invalid request body"
+                }
+        500:
+          description: The Server crashed.
+          body:
+            application/json:
+              type: response500
+              example: |
+                {
+                  "code": "500",
+                  "message": "An internal error occurred"
+                }
+  /rotate:
+    post:
+      description: Rotate the Queen 90 degrees on the given direction (LEFT, RIGHT)
+      securedBy: [jwt]
+      body:
+        application/json:
+          properties:
+            direction:
+              description: Which direction the Queen will rotate to
+              required: true
+              enum: ["LEFT", "RIGHT"]
+              example: LEFT
+      responses:
+        200:
+          description: The request has been fullfilled and the Queen has been rotated
+          body:
+            application/json:
+              type: response200
+              example: |
+                {
+                  "code": "200",
+                  "message": "Queen successfully rotate"
+                }
+        422:
+          description: The request completion failed.
+          body:
+            application/json:
+              type: response422
+              example: |
+                {
+                  "code": "422",
+                  "message": "Unprocessable Entity. Invalid Direction"
+                }
+        400:
+          description: The request completion failed.
+          body:
+            application/json:
+              type: response400
+              example: |
+                {
+                  "code": "400",
+                  "message": "Invalid request body"
+                }
+        500:
+          description: The Server crashed.
+          body:
+            application/json:
+              type: response500
+              example: |
+                {
+                  "code": "500",
+                  "message": "An internal error occurred"
+                }
+  /place:
+    post:
+      description: Place a Queen in the kingdom
+      securedBy: [jwt]
+      body:
+        application/json:
+          type: Person
+      responses:
+        200:
+          description: The request has been fullfilled and the Queen has been placed in the Kingdom
+          body:
+            application/json:
+              type: response200
+              example: |
+                {
+                  "code": "200",
+                  "message": "Queen successfully placed"
+                }
+        400:
+          description: The request completion failed.
+          body:
+            application/json:
+              type: response400
+              example: |
+                {
+                  "code": "400",
+                  "message": "Invalid request body"
+                }
+        500:
+          description: The Server crashed.
+          body:
+            application/json:
+              type: response500
+              example: |
+                {
+                  "code": "500",
+                  "message": "An internal error occurred"
+                }
+/output:
+  get:
+    description: Print out the result of different actions
+    responses:
+      200:
+        description: The request has been fullfilled and the result is printing out
+        body:
+          application/json:
+            type: response200
+            example: |
+              {
+                "code": "2000",
+                "message": "3,3,NORTH"
+              }
+      500:
+        description: The Server crashed.
+        body:
+          application/json:
+            type: response500
+            example: |
+              {
+                "code": "500",
+                "message": "An internal error occurred"
+              }
