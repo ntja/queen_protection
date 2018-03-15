@@ -41,10 +41,24 @@ types:
   Kingdom:
     type: object
     properties:
+      width:
+        type: integer
+        description: The width of the kingdom
+        required: true
+        minimum: 1
+        maximum: 9
+        example: 8
+      length:
+        type: integer
+        description: The length of the kingdom
+        required: true
+        minimum: 1
+        maximum: 9
+        example: 4
       queen:
         type: Person
         description: The Queen of kingdom
-        required: true
+        required: false
         example: { position: {x : 1, y : 2}, face : NORTH }
   responseFormat:
     "type": "object"
